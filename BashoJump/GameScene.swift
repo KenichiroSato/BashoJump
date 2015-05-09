@@ -7,9 +7,24 @@
 //
 
 import SpriteKit
+import CoreMotion
 
 class GameScene: SKScene {
+    
+    var motionManager : CMMotionManager!
+    
     override func didMoveToView(view: SKView) {
+        motionManager = CMMotionManager()
+        
+        motionManager.accelerometerUpdateInterval = 0.1 // get every 0.1 second
+        
+        let accelerometerHandler:CMAccelerometerHandler = {
+            (data:CMAccelerometerData!, error:NSError!) -> Void in
+            println("x:\(data.acceleration.x) y:\(data.acceleration.y) z:\(data.acceleration.z)")
+        }
+        
+        motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler: accelerometerHandler)
+        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

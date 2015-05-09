@@ -14,6 +14,7 @@
 		59DF07B61AFDC33D00A8553B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59DF07B51AFDC33D00A8553B /* Images.xcassets */; };
 		59DF07B91AFDC33D00A8553B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59DF07B71AFDC33D00A8553B /* LaunchScreen.xib */; };
 		59DF07C51AFDC33D00A8553B /* BashoJumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07C41AFDC33D00A8553B /* BashoJumpTests.swift */; };
+		59DF07CF1AFDC78B00A8553B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DF07CE1AFDC78B00A8553B /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		59DF07BE1AFDC33D00A8553B /* BashoJumpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BashoJumpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59DF07C31AFDC33D00A8553B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59DF07C41AFDC33D00A8553B /* BashoJumpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BashoJumpTests.swift; sourceTree = "<group>"; };
+		59DF07CE1AFDC78B00A8553B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DF07CF1AFDC78B00A8553B /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 		59DF079C1AFDC33D00A8553B = {
 			isa = PBXGroup;
 			children = (
+				59DF07CE1AFDC78B00A8553B /* CoreMotion.framework */,
 				59DF07A71AFDC33D00A8553B /* BashoJump */,
 				59DF07C11AFDC33D00A8553B /* BashoJumpTests */,
 				59DF07A61AFDC33D00A8553B /* Products */,
