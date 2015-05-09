@@ -13,6 +13,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var motionManager : CMMotionManager!
     
+    var shouldDetectContact = true
+    
+    var blockManager : BlockManager!
+    
+    var charactor : Basho!
+    
+    var point: Int = 0
+    
+    var pointLabel : SKLabelNode!
+    
     override func didMoveToView(view: SKView) {
         initPhysicsWorld()
         initMotionManager()
@@ -56,7 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreFrame.zPosition = 6
         self.addChild(scoreFrame)
         
-        let pointLabel = SKLabelNode(fontNamed: "Hiragino Kaku Gothic ProN")
+        pointLabel = SKLabelNode(fontNamed: "Hiragino Kaku Gothic ProN")
         pointLabel.text = "0里"
         pointLabel.fontColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         pointLabel.fontSize = 20
@@ -74,13 +84,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setBlocks() {
-        let blockManager = BlockManager()
+        blockManager = BlockManager()
         blockManager.addBlocks(self)
     }
     
     func setCharactor() {
-        let charactor = Basho()
+        charactor = Basho()
         self.addChild(charactor)
+    }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        if (shouldDetectContact) {
+            blockManager.move()
+            charactor.jump()
+        }
+
+        if (isBelowFoor(contact)) {
+            //game over
+        } else {
+            point++
+            pointLabel.text = "\(point)里"
+        }
+    }
+    
+    func isBelowFoor(contact:SKPhysicsContact) -> Bool {
+        return (contact.bodyA.node is Floor || contact.bodyB.node is Floor)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

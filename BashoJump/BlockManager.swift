@@ -38,4 +38,8 @@ public class BlockManager {
         parentNode.addChild(baseNode)
     }
     
+    func move() {
+        let move = SKAction.moveBy(CGVector(dx: 0, dy: -100), duration: 0.5)
+        baseNode.runAction(move)
+    }
 }
