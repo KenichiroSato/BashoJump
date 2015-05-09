@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         initPhysicsWorld()
         initMotionManager()
         setBackground()
+        setBlocks()
     }
 
     func initPhysicsWorld() {
@@ -37,6 +38,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setBackground() {
         let bgSprite = Background()
         self.addChild(bgSprite)
+    }
+    
+    func setBlocks() {
+        let blockManager = BlockManager()
+        blockManager.addBlocks(self)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

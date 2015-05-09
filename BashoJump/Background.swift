@@ -14,7 +14,7 @@ public class Background : SKSpriteNode {
     static private let TEXTURE = SKTexture(imageNamed: "background")
     
     init() {
-        super.init(texture: Background.TEXTURE, color:UIColor.whiteColor(), size: Background.TEXTURE.size())
+        super.init(texture: Background.TEXTURE, color:nil, size: Background.TEXTURE.size())
         self.anchorPoint = CGPoint(x: 0, y: 0)
         self.zPosition = 1
         self.size = self.size

@@ -16,6 +16,8 @@
 		59DF07C51AFDC33D00A8553B /* BashoJumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07C41AFDC33D00A8553B /* BashoJumpTests.swift */; };
 		59DF07CF1AFDC78B00A8553B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DF07CE1AFDC78B00A8553B /* CoreMotion.framework */; };
 		59DF07D11AFDD0FF00A8553B /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07D01AFDD0FF00A8553B /* Background.swift */; };
+		59DF07D31AFDD34800A8553B /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07D21AFDD34800A8553B /* Block.swift */; };
+		59DF07D51AFDD83300A8553B /* BlockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07D41AFDD83300A8553B /* BlockManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		59DF07C41AFDC33D00A8553B /* BashoJumpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BashoJumpTests.swift; sourceTree = "<group>"; };
 		59DF07CE1AFDC78B00A8553B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		59DF07D01AFDD0FF00A8553B /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		59DF07D21AFDD34800A8553B /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		59DF07D41AFDD83300A8553B /* BlockManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +91,9 @@
 			children = (
 				59DF07AA1AFDC33D00A8553B /* AppDelegate.swift */,
 				59DF07AE1AFDC33D00A8553B /* GameScene.swift */,
+				59DF07D41AFDD83300A8553B /* BlockManager.swift */,
 				59DF07D01AFDD0FF00A8553B /* Background.swift */,
+				59DF07D21AFDD34800A8553B /* Block.swift */,
 				59DF07B01AFDC33D00A8553B /* GameViewController.swift */,
 				59DF07B21AFDC33D00A8553B /* Main.storyboard */,
 				59DF07B51AFDC33D00A8553B /* Images.xcassets */,
@@ -224,8 +230,10 @@
 			files = (
 				59DF07AF1AFDC33D00A8553B /* GameScene.swift in Sources */,
 				59DF07B11AFDC33D00A8553B /* GameViewController.swift in Sources */,
+				59DF07D31AFDD34800A8553B /* Block.swift in Sources */,
 				59DF07AB1AFDC33D00A8553B /* AppDelegate.swift in Sources */,
 				59DF07D11AFDD0FF00A8553B /* Background.swift in Sources */,
+				59DF07D51AFDD83300A8553B /* BlockManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
