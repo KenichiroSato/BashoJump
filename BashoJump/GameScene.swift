@@ -20,8 +20,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var isGameOver = false
     
-    let gameOverSprite = SKSpriteNode(imageNamed: "gameover")
-    
     override func didMoveToView(view: SKView) {
         initPhysicsWorld()
         startGame()
@@ -57,18 +55,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         frameSprite.zPosition = 5
         frameSprite.size = self.size
         self.addChild(frameSprite)
-        
-        let scoreFrame = SKSpriteNode(imageNamed: "score")
-        scoreFrame.anchorPoint = CGPoint(x: 1, y: 1)
-        scoreFrame.position = CGPoint(x: frameSprite.size.width - 10,
-            y: frameSprite.size.height - 10)
-        scoreFrame.zPosition = 6
-        self.addChild(scoreFrame)
-
-        gameOverSprite.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height * 0.5)
-        gameOverSprite.hidden = true
-        gameOverSprite.zPosition = 8
-        self.addChild(gameOverSprite)
     }
     
     func setBlocks() {
@@ -88,7 +74,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         if (isBelowFoor(contact)) {
-            //game over
             gameOver()
         } else {
             scoreManager.addPoint()
@@ -122,10 +107,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func gameOver() {
+        showGameOverLabel()
         isGameOver = true
         self.paused = true
-        gameOverSprite.hidden = false
         charactor.gameOver()
         scoreManager.storeHighScore()
+    }
+    
+    private func showGameOverLabel() {
+        let gameOverSprite = SKSpriteNode(imageNamed: "gameover")
+        gameOverSprite.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height * 0.5)
+        gameOverSprite.zPosition = 8
+        self.addChild(gameOverSprite)
     }
 }
