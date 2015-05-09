@@ -7,13 +7,10 @@
 //
 
 import SpriteKit
-import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var motionManager : CMMotionManager!
-    
-    var shouldDetectContact = true
+    //var motionManager : CMMotionManager!
     
     var blockManager : BlockManager!
     
@@ -25,7 +22,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         initPhysicsWorld()
-        initMotionManager()
         setBackground()
         setBlocks()
         setCharactor()
@@ -36,15 +32,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
     }
     
-    func initMotionManager() {
-        motionManager = CMMotionManager()
-        motionManager.accelerometerUpdateInterval = 0.1 // get every 0.1 second
-        let accelerometerHandler:CMAccelerometerHandler = {
-            (data:CMAccelerometerData!, error:NSError!) -> Void in
-            println("x:\(data.acceleration.x) y:\(data.acceleration.y) z:\(data.acceleration.z)")
-        }
-        motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler: accelerometerHandler)
-    }
     
     func setBackground() {
         let bgSprite = Background()
@@ -94,7 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-        if (shouldDetectContact) {
+        if (charactor.contactEnabled) {
             blockManager.move()
             charactor.jump()
         }
@@ -116,5 +103,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        charactor.movePerFrame()
     }
 }

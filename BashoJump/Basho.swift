@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import CoreMotion
 
 public class Basho : SKSpriteNode {
     
@@ -15,9 +16,29 @@ public class Basho : SKSpriteNode {
     
     static private let TEXTURE_DOWN = SKTexture(imageNamed: "down")
     
+    static private let SCREEN_WIDTH = UIScreen.mainScreen().bounds.width
+    
+    private let motionManager : CMMotionManager
+    
+    private(set) var contactEnabled = true
+    
+    private var previousY : CGFloat = 0
+    
+    private var moveDeltaX : CGFloat = 0
     
     init() {
+        motionManager = CMMotionManager()
         super.init(texture: Basho.TEXTURE_UP, color:nil, size: Basho.TEXTURE_UP.size())
+
+        motionManager.accelerometerUpdateInterval = 0.1 // get every 0.1 second
+        let accelerometerHandler:CMAccelerometerHandler = {
+            (data:CMAccelerometerData!, error:NSError!) -> Void in
+            println("x:\(data.acceleration.x) y:\(data.acceleration.y) z:\(data.acceleration.z)")
+            self.moveDeltaX = CGFloat(data.acceleration.x * 20)
+        }
+        motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler: accelerometerHandler)
+
+        
         self.anchorPoint = CGPoint(x: 0.5, y: 0)
         self.position = CGPoint(x: 160, y: 100)
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(2,2))
@@ -39,5 +60,38 @@ public class Basho : SKSpriteNode {
         self.physicsBody?.velocity = CGVector(dx: 0, dy: 300)
         let changeTexture = SKAction.animateWithTextures([Basho.TEXTURE_UP, Basho.TEXTURE_DOWN], timePerFrame: 0.4)
         self.runAction(changeTexture)
+    }
+    
+    func movePerFrame() {
+        self.position = CGPoint(x: self.position.x + moveDeltaX, y: self.position.y)
+        
+        if (self.position.x < 0) {
+            self.position.x = Basho.SCREEN_WIDTH
+        } else if (self.position.x > Basho.SCREEN_WIDTH) {
+            self.position.x = 0
+        }
+        
+        if (isJumping()) {
+            disableContact()
+        } else {
+            enableContact()
+        }
+        previousY = self.position.y
+    }
+    
+    private func isJumping() -> Bool {
+        return self.position.y > previousY
+    }
+    
+    private func enableContact() {
+        contactEnabled = true
+        physicsBody?.collisionBitMask = 1
+        physicsBody?.contactTestBitMask = 1
+    }
+    
+    private func disableContact() {
+        contactEnabled = false
+        physicsBody?.collisionBitMask = 0
+        physicsBody?.contactTestBitMask = 0
     }
 }

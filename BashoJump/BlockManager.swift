@@ -27,7 +27,7 @@ public class BlockManager {
         var y:CGFloat = 0
         
         for i in 0..<BlockManager.NUMBER_OF_BLOCKS {
-            var randX = arc4random_uniform(320)
+            var randX = arc4random_uniform(UInt32(UIScreen.mainScreen().bounds.size.width))
             var randY = arc4random_uniform(100)
             x = CGFloat(randX)
             y += CGFloat(randY) + BlockManager.MINIMUM_Y_GAP
