@@ -26,9 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         initPhysicsWorld()
-        setBackground()
-        setBlocks()
-        setCharactor()
+        startGame()
     }
 
     func initPhysicsWorld() {
@@ -36,6 +34,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
     }
     
+    func startGame() {
+        setBackground()
+        setBlocks()
+        setCharactor()
+    }
     
     func setBackground() {
         let bgSprite = Background()
@@ -109,6 +112,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+            if (isGameOver) {
+                restartGame()
+            }
+        }
+    }
+    
+    private func restartGame() {
+        point = 0
+        removeAllChildren()
+        
+        isGameOver = false
+        self.paused = false
+        startGame()
     }
    
     override func update(currentTime: CFTimeInterval) {
