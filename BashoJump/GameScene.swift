@@ -22,6 +22,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var isGameOver = false
     
+    let gameOverSprite = SKSpriteNode(imageNamed: "gameover")
+    
     override func didMoveToView(view: SKView) {
         initPhysicsWorld()
         setBackground()
@@ -70,6 +72,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         highSroreLabel.position = CGPoint(x: 100, y: frameSprite.size.height - 30)
         highSroreLabel.zPosition = 7
         self.addChild(highSroreLabel)
+        
+        gameOverSprite.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height * 0.5)
+        gameOverSprite.hidden = true
+        gameOverSprite.zPosition = 8
+        self.addChild(gameOverSprite)
     }
     
     func setBlocks() {
@@ -112,6 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func gameOver() {
         isGameOver = true
         self.paused = true
+        gameOverSprite.hidden = false
         charactor.gameOver()
     }
 }
