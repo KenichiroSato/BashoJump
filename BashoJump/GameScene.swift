@@ -10,7 +10,7 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    //var motionManager : CMMotionManager!
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     
     var blockManager : BlockManager!
     
@@ -19,6 +19,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var point: Int = 0
     
     var pointLabel : SKLabelNode!
+    
+    var highScoreLabel : SKLabelNode!
     
     var isGameOver = false
     
@@ -68,13 +70,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pointLabel.zPosition = 7
         self.addChild(pointLabel)
         
-        let highSroreLabel = SKLabelNode(fontNamed: "Hiragino Kaku Gothic ProN")
-        highSroreLabel.text = "ハイスコア :0里"
-        highSroreLabel.fontSize = 17
-        highSroreLabel.fontColor = UIColor.whiteColor()
-        highSroreLabel.position = CGPoint(x: 100, y: frameSprite.size.height - 30)
-        highSroreLabel.zPosition = 7
-        self.addChild(highSroreLabel)
+        highScoreLabel = SKLabelNode(fontNamed: "Hiragino Kaku Gothic ProN")
+        var highScore = userDefaults.integerForKey("HIGHSCORE")
+        highScoreLabel.text = "ハイスコア :\(highScore)里"
+        highScoreLabel.fontSize = 17
+        highScoreLabel.fontColor = UIColor.whiteColor()
+        highScoreLabel.position = CGPoint(x: 100, y: frameSprite.size.height - 30)
+        highScoreLabel.zPosition = 7
+        self.addChild(highScoreLabel)
         
         gameOverSprite.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height * 0.5)
         gameOverSprite.hidden = true
@@ -138,5 +141,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.paused = true
         gameOverSprite.hidden = false
         charactor.gameOver()
+        storeHighScore()
+    }
+    
+    private func storeHighScore() {
+        var hiscore:Int = userDefaults.integerForKey("HIGHSCORE")
+        
+        if (point > hiscore) {
+            userDefaults.setInteger(point, forKey: "HIGHSCORE")
+            userDefaults.synchronize()
+            highScoreLabel.text = "ハイスコア :\(point)里"
+        }
     }
 }

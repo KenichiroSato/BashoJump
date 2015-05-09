@@ -35,12 +35,10 @@ public class Basho : SKSpriteNode {
         motionManager.accelerometerUpdateInterval = 0.1 // get every 0.1 second
         let accelerometerHandler:CMAccelerometerHandler = {
             (data:CMAccelerometerData!, error:NSError!) -> Void in
-            println("x:\(data.acceleration.x) y:\(data.acceleration.y) z:\(data.acceleration.z)")
             self.moveDeltaX = CGFloat(data.acceleration.x * 20)
         }
         motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler: accelerometerHandler)
 
-        
         self.anchorPoint = CGPoint(x: 0.5, y: 0)
         self.position = CGPoint(x: 160, y: 100)
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(2,2))
