@@ -19,6 +19,7 @@
 		59DF07D31AFDD34800A8553B /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07D21AFDD34800A8553B /* Block.swift */; };
 		59DF07D51AFDD83300A8553B /* BlockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07D41AFDD83300A8553B /* BlockManager.swift */; };
 		59DF07D71AFDDCFD00A8553B /* Basho.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07D61AFDDCFD00A8553B /* Basho.swift */; };
+		59DF07D91AFDE34C00A8553B /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DF07D81AFDE34C00A8553B /* Floor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		59DF07D21AFDD34800A8553B /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		59DF07D41AFDD83300A8553B /* BlockManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockManager.swift; sourceTree = "<group>"; };
 		59DF07D61AFDDCFD00A8553B /* Basho.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basho.swift; sourceTree = "<group>"; };
+		59DF07D81AFDE34C00A8553B /* Floor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			children = (
 				59DF07AA1AFDC33D00A8553B /* AppDelegate.swift */,
 				59DF07AE1AFDC33D00A8553B /* GameScene.swift */,
+				59DF07D81AFDE34C00A8553B /* Floor.swift */,
 				59DF07D61AFDDCFD00A8553B /* Basho.swift */,
 				59DF07D41AFDD83300A8553B /* BlockManager.swift */,
 				59DF07D01AFDD0FF00A8553B /* Background.swift */,
@@ -231,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DF07D91AFDE34C00A8553B /* Floor.swift in Sources */,
 				59DF07AF1AFDC33D00A8553B /* GameScene.swift in Sources */,
 				59DF07B11AFDC33D00A8553B /* GameViewController.swift in Sources */,
 				59DF07D31AFDD34800A8553B /* Block.swift in Sources */,
