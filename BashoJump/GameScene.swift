@@ -20,6 +20,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var pointLabel : SKLabelNode!
     
+    var isGameOver = false
+    
     override func didMoveToView(view: SKView) {
         initPhysicsWorld()
         setBackground()
@@ -88,6 +90,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if (isBelowFoor(contact)) {
             //game over
+            gameOver()
         } else {
             point++
             pointLabel.text = "\(point)里"
@@ -104,5 +107,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         charactor.movePerFrame()
+    }
+    
+    private func gameOver() {
+        isGameOver = true
+        self.paused = true
+        charactor.gameOver()
     }
 }

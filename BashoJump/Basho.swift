@@ -16,6 +16,8 @@ public class Basho : SKSpriteNode {
     
     static private let TEXTURE_DOWN = SKTexture(imageNamed: "down")
     
+    static private let TEXTURE_MISS = SKTexture(imageNamed: "miss")
+    
     static private let SCREEN_WIDTH = UIScreen.mainScreen().bounds.width
     
     private let motionManager : CMMotionManager
@@ -93,5 +95,9 @@ public class Basho : SKSpriteNode {
         contactEnabled = false
         physicsBody?.collisionBitMask = 0
         physicsBody?.contactTestBitMask = 0
+    }
+    
+    func gameOver() {
+        self.texture = Basho.TEXTURE_MISS
     }
 }
