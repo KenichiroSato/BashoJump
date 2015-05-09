@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         initPhysicsWorld()
         initMotionManager()
+        setBackground()
     }
 
     func initPhysicsWorld() {
@@ -33,6 +34,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler: accelerometerHandler)
     }
     
+    func setBackground() {
+        let bgSprite = Background()
+        self.addChild(bgSprite)
+    }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
     }
