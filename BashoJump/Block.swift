@@ -15,8 +15,9 @@ public class Block : SKSpriteNode {
     
     static private let HIT_DETECT_SIZE = CGSizeMake(87, 2)
     
-    init() {
+    init(x:CGFloat, y:CGFloat) {
         super.init(texture: Block.TEXTURE, color:nil, size: Block.TEXTURE.size())
+        self.position = CGPoint(x: x, y: y)
         self.physicsBody = SKPhysicsBody(rectangleOfSize: Block.HIT_DETECT_SIZE)
         self.physicsBody?.collisionBitMask = 1
         self.physicsBody?.contactTestBitMask = 1

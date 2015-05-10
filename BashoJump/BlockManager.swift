@@ -11,35 +11,42 @@ import SpriteKit
 
 public class BlockManager {
     
-    static private let NUMBER_OF_BLOCKS = 1000
+    static private let NUM_OF_INITIAL_BLOCKS = 10
     
     static private let MINIMUM_Y_GAP:CGFloat = 50
     
+    static private let MOVE_DISTANCE : CGFloat = 100
+    
     let baseNode : SKNode
     
-    init() {
+    var currentY : CGFloat = 0
+    
+    init(parentNode:SKNode) {
         baseNode = SKNode()
         baseNode.zPosition = 2
-    }
-    
-    func addBlocks(parentNode:SKNode) {
-        var x:CGFloat = 0
-        var y:CGFloat = 0
-        
-        for i in 0..<BlockManager.NUMBER_OF_BLOCKS {
-            var randX = arc4random_uniform(UInt32(UIScreen.mainScreen().bounds.size.width))
-            var randY = arc4random_uniform(100)
-            x = CGFloat(randX)
-            y += CGFloat(randY) + BlockManager.MINIMUM_Y_GAP
-            let block = Block()
-            block.position = CGPoint(x: x, y: y)
-            baseNode.addChild(block)
-        }
         parentNode.addChild(baseNode)
     }
     
+    func addInitialBlocks() {
+        for i in 0..<BlockManager.NUM_OF_INITIAL_BLOCKS {
+            addBlock()
+        }
+    }
+    
+    func addBlock() {
+        var randX = arc4random_uniform(UInt32(UIScreen.mainScreen().bounds.size.width))
+        var randY = arc4random_uniform(100)
+        currentY = currentY + CGFloat(randY) + BlockManager.MINIMUM_Y_GAP
+        let x = CGFloat(randX)
+        let block = Block(x: x, y: currentY)
+        baseNode.addChild(block)
+    }
+    
     func move() {
-        let move = SKAction.moveBy(CGVector(dx: 0, dy: -100), duration: 0.5)
+        let move = SKAction.moveBy(CGVector(dx: 0,
+            dy: -BlockManager.MOVE_DISTANCE), duration: 0.5)
         baseNode.runAction(move)
+        currentY -= BlockManager.MOVE_DISTANCE
+        addBlock()
     }
 }

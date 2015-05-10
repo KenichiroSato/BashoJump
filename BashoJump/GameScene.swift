@@ -58,8 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setBlocks() {
-        blockManager = BlockManager()
-        blockManager.addBlocks(self)
+        blockManager = BlockManager(parentNode: self)
+        blockManager.addInitialBlocks()
     }
     
     func setCharactor() {
