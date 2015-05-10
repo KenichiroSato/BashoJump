@@ -18,8 +18,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var scoreManager : ScoreManager!
     
-    var isGameOver = false
-    
     override func didMoveToView(view: SKView) {
         initPhysicsWorld()
         startGame()
@@ -86,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
-            if (isGameOver) {
+            if (isGameOver()) {
                 restartGame()
             }
         }
@@ -96,11 +94,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreManager.resetPoint()
         removeAllChildren()
         
-        isGameOver = false
         self.paused = false
         startGame()
     }
    
+    private func isGameOver() -> Bool {
+        return self.paused
+    }
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         charactor.movePerFrame()
@@ -108,7 +109,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func gameOver() {
         showGameOverLabel()
-        isGameOver = true
         self.paused = true
         charactor.gameOver()
         scoreManager.storeHighScore()
